@@ -1,5 +1,6 @@
 package mobile.android;
 
+import io.qameta.allure.Description;
 import mobile.TestBase;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import static org.openqa.selenium.By.id;
 public class AndroidTest extends TestBase {
     @Test
     @Tag("android")
+    @Description("Проверка поиска викпедии")
     void ebayTest() {
         $(accessibilityId("Search Wikipedia")).click();
         $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Ebay");

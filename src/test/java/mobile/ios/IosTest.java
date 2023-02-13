@@ -14,12 +14,23 @@ public class IosTest extends TestBase {
 
     @Test
     @Tag("ios")
-    void searchTestIos() {
-        $(id("Text Button")).click();
-        assertEquals("Waiting for text input.", $(id("Text Output")).getText());
-        $(id("Text Input")).click();
-        $(id("Text Input")).sendKeys("hello@browserstack.com");
-        $(id("Text Input")).pressEnter();
-        assertEquals("hello@browserstack.com", $(id("Text Output")).getText());
+    void checkOutputTextTest() {
+        step("Click Text Button", () -> {
+            $(id("Text Button")).click();
+        });
+
+        step("Check initial state Output text", () -> {
+            assertEquals("Waiting for text input.", $(id("Text Output")).getText());
+        });
+
+        step(format("Set value %s in the input field and press enter", "Selenium"), () -> {
+            $(id("Text Input")).click();
+            $(id("Text Input")).sendKeys("Selenium");
+            $(id("Text Input")).pressEnter();
+        });
+
+        step("Check Output text", () -> {
+            assertEquals("Selenium", $(id("Text Output")).getText());
+        });
     }
 }
