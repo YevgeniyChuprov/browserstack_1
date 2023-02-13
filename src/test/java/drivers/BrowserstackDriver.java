@@ -19,27 +19,21 @@ public class BrowserstackDriver implements WebDriverProvider {
     @SneakyThrows
     @Override
     @Nonnull
-
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
         MutableCapabilities mutableCapabilities = new MutableCapabilities();
         mutableCapabilities.merge(capabilities);
 
-
         mutableCapabilities.setCapability("browserstack.user", config.login());
         mutableCapabilities.setCapability("browserstack.key", config.password());
 
-
         mutableCapabilities.setCapability("app", config.appUrl());
-
 
         mutableCapabilities.setCapability("device", config.device());
         mutableCapabilities.setCapability("os_version",config.osVersion());
 
-
         mutableCapabilities.setCapability("project", config.projectName());
         mutableCapabilities.setCapability("build", config.buildName());
         mutableCapabilities.setCapability("name", config.testName());
-
 
         return new RemoteWebDriver(getBrowserstackUrl(), mutableCapabilities);
     }
